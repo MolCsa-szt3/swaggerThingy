@@ -38,7 +38,7 @@ router.put("/:id", async (req, res, next) => {
 
         await dbRun("UPDATE users SET firstName = ?, lastName = ?, email = ?, class = ? WHERE id = ?;", 
             [req.body.firstName || user.firstName, req.body.lastName || user.lastName, req.body.email || user.email, req.body.class || user.class, req.params.id]);
-        res.status(200).json({ id: req.params.id, name: req.body.name || user.name, email: req.body.email || user.email});
+        res.status(200).json({ id: req.params.id, firstName: req.body.firstName || user.firstName,lastName: req.body.lastName || user.lastName, email: req.body.email || user.email, class:req.body.class || user.class});
     } catch (err) {
         next(err);
     }
