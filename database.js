@@ -14,7 +14,7 @@ const initializeDB = async () => {
     ]
 
     for (const user of users) {
-        await dbRun("INSERT INTO users (firstName, lastName, email, class) VALUES (?, ?, ?, ?, ?)", [user.firstName, user.lastName, user.email, user.class]);
+        await dbRun("INSERT INTO users (firstName, lastName, email, class) VALUES (?, ?, ?, ?)", [user.firstName, user.lastName, user.email, user.class]);
     }
 };
 
