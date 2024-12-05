@@ -6,7 +6,7 @@ const doc = {
     description: 'Users API'
   },
   host: 'localhost:3000',
-  basePath: "/users"
+  basePath: "/api/users"
 };
 const outputFile = './swaggerLog.json';
 const routes = ['./routes/users.js'];

@@ -22,6 +22,39 @@ router.get("/:id", async (req, res, next) => {
         next(err);
     }
 });
+router.post("/", async (req, res, next) => {
+    try {
+        const result = await dbRun("INSERT INTO users (firstName, lastName, email, class) VALUES (?, ?, ?, ?)", [user.firstName, user.lastName, user.email, user.class]);
+        res.status(201).json({ id: result.lastID, ...req.body });
+    } catch (err) {
+        next(err);
+    }
+});
+
+router.put("/:id", async (req, res, next) => {
+    try {
+        const [user] = await dbQuery("SELECT * FROM users WHERE id = ?;", [req.params.id]);
+        if (!user) return res.status(404).json({ message: "User not found" });
+
+        await dbRun("UPDATE users SET firstName = ?, lastName = ?, email = ?, class = ? WHERE id = ?;", 
+            [req.body.firstName || user.firstName, req.body.lastName || user.lastName, req.body.email || user.email, req.body.class || user.class, req.params.id]);
+        res.status(200).json({ id: req.params.id, name: req.body.name || user.name, email: req.body.email || user.email});
+    } catch (err) {
+        next(err);
+    }
+});
+
+router.delete("/:id", async (req, res, next) => {
+    try {
+        const [user] = await dbQuery("SELECT * FROM users WHERE id = ?;", [req.params.id]);
+        if (!user) return res.status(404).json({ message: "User not found" });
+
+        await dbRun("DELETE FROM users WHERE id = ?;", [req.params.id]);
+        res.sendStatus(204);
+    } catch (err) {
+        next(err);
+    }
+});
 
 
 export default router;
