@@ -13,7 +13,7 @@
   "paths": {
     "/": {
       "get": {
-        "description": "",
+        "description": "List ALL users",
         "responses": {
           "200": {
             "description": "OK"
@@ -21,7 +21,7 @@
         }
       },
       "post": {
-        "description": "",
+        "description": "Add a user (ID is provided automatically)",
         "parameters": [
           {
             "name": "body",
@@ -30,16 +30,16 @@
               "type": "object",
               "properties": {
                 "firstName": {
-                  "example": "any"
+                  "example": "string"
                 },
                 "lastName": {
-                  "example": "any"
+                  "example": "string"
                 },
                 "email": {
-                  "example": "any"
+                  "example": "string"
                 },
                 "class": {
-                  "example": "any"
+                  "example": "string"
                 }
               }
             }
@@ -54,7 +54,7 @@
     },
     "/{id}": {
       "get": {
-        "description": "",
+        "description": "Lisr a SPECIFIC user, based on id provided",
         "parameters": [
           {
             "name": "id",
@@ -73,7 +73,7 @@
         }
       },
       "put": {
-        "description": "",
+        "description": "Modifies user of given id",
         "parameters": [
           {
             "name": "id",
@@ -88,16 +88,16 @@
               "type": "object",
               "properties": {
                 "firstName": {
-                  "example": "any"
+                  "example": "string"
                 },
                 "lastName": {
-                  "example": "any"
+                  "example": "string"
                 },
                 "email": {
-                  "example": "any"
+                  "example": "string"
                 },
                 "class": {
-                  "example": "any"
+                  "example": "string"
                 }
               }
             }
@@ -113,7 +113,7 @@
         }
       },
       "delete": {
-        "description": "",
+        "description": "Deletes user of a given id",
         "parameters": [
           {
             "name": "id",
